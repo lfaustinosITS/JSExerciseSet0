@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Attributes</title>
+  <script>
+    const printAttr = function(el,attr){
+    for (let word of attr){
+        if (el.hasAttribute(word)== true){
+            console.log(el.getAttribute(word));
+        }
+        else{ console.log("The element does'nt htave that attribute");}
+
+    }
+    }
+    
+    window.onload = function() {
+      var element = document.getElementById('a');
+      var attributes = ['id', 'class', 'style', 'val'];
+      printAttr(element, attributes);
+    };
+  </script>
+</head>
+<body>
+  <div id="a" class="square" style="display:inline-block" val="something important"></div>
+</body>
+</html>
