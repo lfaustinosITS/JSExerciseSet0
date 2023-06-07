@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Columns</title>
+  <style>
+    .column-1 {
+      columns: 1;
+    }
+
+    .column-2 {
+      columns: 2;
+    }
+
+    .column-3 {
+      columns: 3;
+    }
+
+    .column-4 {
+      columns: 4;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label for="columnCount">Number of Columns:</label>
+    <select id="columnCount">
+      <option value="1">one</option>
+      <option value="2">two</option>
+      <option value="3">three</option>
+      <option value="4">four</option>
+    </select>
+  </div>
+
+  <div class="column-1" id="textContainer">
+    <p>In the dazzling stellar landscape of theoretical physics, a gem of knowledge hides under the name of the Schwarzschild metric. In the realms of the cosmos, where invisible forces govern the celestial ballet, this metric unravels the secrets of a gravitational enigma with captivating elegance.</p>
+
+<p>In the vastness of spacetime, the Schwarzschild metric emerges as the mystical chant of a cosmic shaman. Its arcane equations transport us to a distorted universe, where gravity shapes celestial trajectories and stars become cosmic beacons guiding knowledge seekers.</p>
+
+<p>Imagine, if you can, an aging star, exhaling its last breaths of light. In its core, the concentrated mass becomes a deep well in the fabric of spacetime. It is here that the Schwarzschild metric unfolds in all its surreal glory.</p>
+
+<p>Coordinates twist and stretch, like cosmic serpents dancing to the rhythm of relentless gravity. Time itself seems to dilate, and space bends under the influence of this gravitational titan. In this astral ballet, the Schwarzschild metric reveals the hidden dimensions of a black hole.</p>
+
+<p>As if the universe were a magical canvas, the Schwarzschild metric paints a vibrant picture of singularities and event horizons. Boundaries blur, and intrepid travelers are drawn into the dark embrace of the black hole, where the known laws of physics seem to fade into the ether.</p>
+
+<p> However, even in this distorted reality, the Schwarzschild metric provides us with guidance, a compass in the gravitational labyrinth. It shows us how space and time intertwine in a cosmic dance, revealing the hidden wonders of the universe.</p>
+
+<p>This is how the Schwarzschild metric becomes a literary jewel in the tapestry of Mexican magical realism. Like a feather in the hand of a visionary writer, it transports us to worlds where fantasy and reality intertwine in a hypnotic dance.</p>
+
+<p>On this journey through the mysteries of the cosmos, the Schwarzschild metric invites us to explore the limits of our understanding, to embrace wonder, and to be carried away by the mystical currents of the universe. In its elegant simplicity, it reminds us that even in the darkest corners of reality, there is always light and beauty waiting to be discovered.</p>
+  </div>
+
+  <script>
+    let columnCountSelect = document.getElementById('columnCount');
+    let textContainer = document.getElementById('textContainer');
+
+    columnCountSelect.addEventListener('change', function() {
+      let columnCount = parseInt(columnCountSelect.value, 10);
+
+      textContainer.className = 'column-' + columnCount;
+    });
+  </script>
+</body>
+</html>
