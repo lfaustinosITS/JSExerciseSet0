@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Three Times Button</title>
+</head>
+<body>
+  <button id="myButton">Click Me</button>
+  <br>
+  <meter id="usageMeter" min="0" max="3" value="0"></meter>
+  <br>
+  <button id="Reset">Reset</button>
+
+  <script>
+    let button = document.getElementById('myButton');
+    let meter = document.getElementById('usageMeter');
+    let usageCount = 0;
+    let reset = document.getElementById('Reset')
+
+    button.addEventListener('click', function() {
+      if (usageCount < 3) {
+        usageCount++;
+        meter.value = usageCount;
+
+        if (usageCount === 3) {
+          button.disabled = true;
+        }
+      }
+    });
+    reset.addEventListener('click',function(){
+        usageCount = 0;
+        meter.value = usageCount;
+        button.disabled = false;
+     })
+  </script>
+</body>
+</html>
