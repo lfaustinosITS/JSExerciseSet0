@@ -1,0 +1,55 @@
+.container{
+    counter-reset: template-counter;
+    margin-left: 10vw;
+    width: 80vw;
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+.container .template1 img{
+    width: 20%;
+    float: left;
+    height: 20vw;
+    
+
+
+}
+.container .template1 .content:before{
+    content: counter(template-counter);
+    counter-increment: template-counter;
+    position: relative;
+    top:0;
+    left:0;
+    color: black;
+    font-weight: bold;
+    
+}
+.container .template1 h2{
+    width: 70%;
+    height: 2vw;
+    display:inline-block;
+    grid-column:span 7;
+    text-align: center;
+}
+.container .template1 .content{
+    grid-column: span 7;
+    width: 70%;
+    height: 20vw;
+    overflow-y:hidden;
+    overflow-x: hidden;
+}
+  
+.container .template2{
+    align-items: center;
+    width: 80vw;
+    font-family: 'Courier New', Courier, monospace;
+}
+.container .template2 img{
+    float: left;
+    object-fit: cover;
+    width: 20vw;
+
+}
+.container .template2 h2{
+    width: 100%;
+    text-align: center;
+}
