@@ -1,6 +1,6 @@
 class OnlyNumber{
     constructor(){
-        let onumber = '';
+        let onumber = 0;
         Object.defineProperty(this, 'onumber', {
             get() {
               return onumber;
@@ -12,8 +12,7 @@ class OnlyNumber{
                 throw new Error('Error: This is not a number');
               }
             },
-            enumerable: true,
-            configurable: true
+            enumerable: true
           }); 
     }
 }
