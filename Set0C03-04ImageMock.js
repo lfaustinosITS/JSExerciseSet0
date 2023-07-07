@@ -1,12 +1,20 @@
 class ImageMock{
-    constructor(array,width,heigth,name){
+    constructor(array,width,height,name){
+        if (array.length !== width * height) {
+            throw new Error("The length of the array does not match the specified width and height.");
+        }
         this.array = array;
         this.width = width;
-        this.heigth = heigth;
+        this.heigth = height;
         this.name = name;
     }
     getPixel(x,y){
-        let n = y*(this.width-1) + x;
+        if (x>(this.width-1) || x<0) {
+            throw new Error("The value of x is outside the parameters of the image");
+        }if (y>(this.height-1) || y<0) {
+            throw new Error("The value of y is outside the parameters of the image");
+        }
+        let n = y*(this.width) + x;
         return this.array[n];
 
     }
