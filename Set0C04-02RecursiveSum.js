@@ -1,13 +1,13 @@
-const RecursiveSum = function(array){
-    if (array.length == 1){
+const RecursiveSum = function(array,n=array.length){
+    let k=0;
+    if (n==1){
     return array[0];
     }
     else{
-        let k = array[0]+array[1];
-        array.shift();
-        array.shift();
-        array.push(k)
-        return RecursiveSum(array);
+        k = array[n-1]+RecursiveSum(array,n-1);   
     }
+    
+    return k;
 }
-console.log(RecursiveSum([1,3,5,7]));
+
+console.log(RecursiveSum([10,3,5,7,10]));
