@@ -1,15 +1,9 @@
-const ObjectProp=function(obj,bol = false){
+const ObjectProp=function(obj,onlyObjectInstances = false){
     properties=[];
-    if (bol == true){
-        for (prop in obj){
-            if (obj.hasOwnProperty(prop)){
-                properties.push(prop);
-            }
-
-        }
-    }
-    else {
-        for (prop in obj){
+    for (prop in obj){
+        if (onlyObjectInstances == true && !obj.hasOwnProperty(prop)){
+            continue;
+        }else {
             properties.push(prop);
         }
     }
