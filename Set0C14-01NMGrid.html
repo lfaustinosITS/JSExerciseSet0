@@ -40,6 +40,7 @@
     });
 
     function createGrid(rows, columns) {
+      let fragment = document.createDocumentFragment();
       gridContainer.innerHTML = '';
 
       gridContainer.style.gridTemplateColumns = 'repeat(' + columns + ', 1fr)';
@@ -49,9 +50,10 @@
           let gridItem = document.createElement('div');
           gridItem.className = 'grid-item';
           gridItem.textContent = '(' + (i + 1) + ', ' + (j + 1) + ')';
-          gridContainer.appendChild(gridItem);
+          fragment.appendChild(gridItem);
         }
       }
+      gridContainer.appendChild(fragment);
     }
   </script>
 </body>
