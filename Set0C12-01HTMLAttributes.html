@@ -4,13 +4,18 @@
   <title>Print Attributes</title>
   <script>
     const printAttr = function(element,attr){
+    let missingAttributes=[];
     for (let word of attr){
         if (element.hasAttribute(word)== true){
             console.log(element.getAttribute(word));
         }
-        else{ console.log("The element does'nt htave that attribute");}
+        else{ missingAttributes.push(word);}
 
     }
+    if (missingAttributes.length>0){
+      console.error("The element doesn't have the following attributes: " + missingAttributes.join(", "));
+    }
+
     }
     
     window.onload = function() {
