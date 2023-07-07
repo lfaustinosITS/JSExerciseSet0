@@ -1,8 +1,5 @@
 const Fibonacci = function(num){
-    if (num == 0){
-        return 1;
-    }
-    else if (num == 1){ 
+    if (num == 0 || num == 1){
         return 1;
     }
     else  {
@@ -10,4 +7,4 @@ const Fibonacci = function(num){
     }
 
 }
-console.log(Fibonacci(5));
+console.log(Fibonacci(5), Fibonacci(1), Fibonacci(0));
