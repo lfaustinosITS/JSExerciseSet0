@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
-	<link rel="stylesheet" href="sap.css" />
+    <link rel="stylesheet" href="sap.css" />
     <title>Single Page Application</title>
 </head>
+
 <body>
     <div class="container" id="postContainer">
-    
+
     </div>
 
     <script>
@@ -15,32 +17,37 @@
         function createTemplate1(post) {
             const template = document.createElement('div');
             template.classList.add('template1');
-            template.innerHTML = `
-                <div class="image">
-                    <img src="${post.image}" alt="Image">
-                </div>
-                <div class="content">
+            const img =document.createElement('img')
+            img.src = post.image
+            const content = document.createElement('div')
+            content.classList.add('content')
+            content.innerHTML = `
                     <h2>${post.title}</h2><br>
                     ${post.text}
-                </div>
             `;
+            template.appendChild(img);
+            template.appendChild(content);
             return template;
         }
 
         //Template 2
         function createTemplate2(post) {
             const template = document.createElement('div');
-            template.classList.add('template2');
-            template.innerHTML = `
-                <div class="image">
-                    <img src="${post.image}" alt="Image">
-                </div>
-                <div class="content">
+                template.classList.add('template2');
+            const img =document.createElement('img')
+                img.src = post.image
+            const content = document.createElement('div')
+                content.classList.add('content')
+                content.innerHTML = `                
                     <h2>${post.title}</h2>
-                    ${post.text}
-                    <a href="#" id="backLink">Back to List</a>
-                </div>
-            `;
+                    ${post.text}`;
+            const backLink=document.createElement('a');
+                backLink.setAttribute("id","backLink");
+                backLink.setAttribute("href","#");
+                backLink.innerHTML= `Back to List`;
+            content.appendChild(backLink);
+            template.appendChild(img);
+            template.appendChild(content);
             return template;
         }
 
@@ -51,16 +58,20 @@
             const template2 = createTemplate2(post);
             postContainer.appendChild(template2);
             const backLink = document.getElementById('backLink');
-            backLink.addEventListener('click', function(event) {
+            backLink.addEventListener('click', function (event) {
                 event.preventDefault();
                 loadPosts();
+                history.pushState(null, null, window.location.pathname);
+
             });
         }
 
         //Template 1 click
         function template1Click(post) {
-            return function() {
+            return function () {
                 navigateToTemplate2(post);
+                history.pushState({ template: 'template2', post }, null, '?template=template2');
+                localStorage.setItem('selectedPost', JSON.stringify(post));
             }
         }
 
@@ -80,15 +91,31 @@
                         }
                     }
                 })
-            .catch(error => console.log(error));
+                .catch(error => console.log(error));
         }
 
         //Initialize App
         function initializeApp() {
-            loadPosts();
+            const urlParams = new URLSearchParams(window.location.search);
+            const template = urlParams.get('template');
+            if (template === 'template2') {
+                const post = JSON.parse(localStorage.getItem('selectedPost'));
+                navigateToTemplate2(post);
+            } else {
+                loadPosts();
+            }
+            window.addEventListener('popstate', function (event) {
+                if (event.state && event.state.template === 'template2') {
+                    const post = event.state.post;
+                    navigateToTemplate2(post);
+                } else {
+                    loadPosts();
+                }
+            });
         }
 
         initializeApp();
     </script>
 </body>
+
 </html>
