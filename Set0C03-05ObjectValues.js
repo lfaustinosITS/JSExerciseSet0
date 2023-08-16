@@ -1,6 +1,8 @@
+"use strict"
+
 const ObjectProp=function(obj,onlyObjectInstances = false){
-    properties=[];
-    for (prop in obj){
+    let properties=[];
+    for (let prop in obj){
         if (onlyObjectInstances == true && !obj.hasOwnProperty(prop)){
             continue;
         }else {
