@@ -14,7 +14,7 @@ const hexToRGB = function (hexExpression) {
 
 }
 
-console.log(hexToRGB('#3020ff'));
-console.log(hexToRGB('#3020,g'));
-console.log(hexToRGB('#302fg'));
-console.log(hexToRGB('#3020ff1'));
+console.log(hexToRGB('#3020ff'));//rgb (48,32,255)
+console.log(hexToRGB('#3020,g'));//Uncaught Error Error: This is not a valid expression
+console.log(hexToRGB('#302fg'));//Uncaught Error Error: This is not a valid expression
+console.log(hexToRGB('#3020ff1'));//Uncaught Error Error: This is not a valid expression
