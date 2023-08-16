@@ -1,4 +1,6 @@
-const usToIs = function (String) {
+"use strict"
+
+const usToIs = function (month, day, year) {
     const US = {
         "01-01": "New Year's Day",
         "01-20": "Martin Luther King Jr. Day",
@@ -29,22 +31,46 @@ const usToIs = function (String) {
         "12-26": "Annar í jólum",
         "12-31": "Gamlársdagur"
     };
-    let expres = /^(0[1-9]|1[0-3])\/(0[1-9]|[1-2][0-9]|3[01])\/\d{4}$/;
-    if (expres.test(String)) {
-        dataDate = String.split("/");
-        day = dataDate[0] + '-' + dataDate[1]
-        date = dataDate[1] + '/' + dataDate[0] + '/' + dataDate[2];
-        if (IS[day]) {
-            return date + ' (' + IS[day] + ')';
+    if (typeof month == 'string') {
+
+        const expres = /^(0[1-9]|1[0-3])\/(0[1-9]|[1-2][0-9]|3[01])\/(\d{4})$/;
+        if (expres.test(month)) {
+            const dataDate = expres.exec(month);
+            day = dataDate[2];
+            month = dataDate[1];
+            year = dataDate[3];
         }
-        else { return date; }
+        else { throw new Error("This is not a valid date"); }
     }
+    const monthRegex = /^(0?[1-9]|1[0-2])$/;
+    const dayRegex = /^(0?[1-9]|1[0-9]|2[0-9]|3[01])$/;
+    const yearRegex = /^(\d{4})$/;
+
+    if (monthRegex.test(month) && dayRegex.test(day) && yearRegex.test(year)) {
+
+        const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+
+        if (IS[`${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`]) {
+            return `${formattedDate} (${IS[`${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`]})`;
+        } else {
+            return formattedDate;
+        }
+    } else if (!monthRegex.test(month)) {
+        throw new Error("This is not a valid month");
+    } else if (!dayRegex.test(day)) {
+        throw new Error("This is not a valid day");
+    } else if (!yearRegex.test(year)) {
+        throw new Error("This is not a valid year");
+    }
+    console.log('here')
     throw new Error("This is not a valid date");
 }
-
-console.log(usToIs("12/31/2015"));
-console.log(usToIs("04/20/2023"));
-console.log(usToIs("06/08/2015"));
-console.log(usToIs("10/12/2022"));
-console.log(usToIs("13/08/2015"));
-console.log(usToIs("06/32/2015"));
+// Example:
+console.log(usToIs("12/31/2015"));// 31/12/2015 (Gamlársdagur)
+console.log(usToIs("04/20/2023"));// 20/04/2023 (Páskadagur)
+console.log(usToIs(4, 20, 2023));// 20/04/2023 (Páskadagur)
+console.log(usToIs(6, 8, 2015));// 08/06/2015 (Hvítasunnudagur)
+console.log(usToIs("10/12/2022"));// 12/10/2022
+console.log(usToIs(13, 8, 2015));// Uncaught Error Error: This is not a valid month
+console.log(usToIs("06/32/2015"));// Uncaught Error Error: This is not a valid date
+console.log(usToIs(6, 32, 2015));// Uncaught Error Error: This is not a valid day
