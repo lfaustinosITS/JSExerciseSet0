@@ -1,23 +1,18 @@
 class LMath {
-    add(...array) {
-        if (array[0].length == 0){
-            return "void";
+    add(...args) {
+        if (args.length == 0){
+            return 0;
         }
         let sum=0;
-        for(let x of array){
-            for(let y of x)
-            sum += y;
-        }
+        args.forEach((number)=>sum+=number)
+        
         return sum}
-    mult(...array){
-        if (array[0].length == 0){
-            return "void";
+    mult(...args){
+        if (args.length == 0){
+            return 0;
         }
         let multi=1;
-        for(let x of array){
-            for(let y of x)
-            multi *= y;
-        }
+        args.forEach((number)=>multi*=number)
         return multi
     }
     fact(number){
@@ -30,4 +25,4 @@ class LMath {
     }
 }
 const Leonardo = new LMath();
-console.log(Leonardo.mult([1,2,3],[6],[2,3]),Leonardo.fact(5),Leonardo.mult([]),Leonardo.add([]));
+console.log(Leonardo.mult(1,2,3,4),Leonardo.fact(5),Leonardo.mult(),Leonardo.add());
