@@ -11,108 +11,127 @@
     <div class="container" id="postContainer">
 
     </div>
+    <template id="template">
+        <div class="template1">
+            <img src="" alt="Image">
+            <div class="content">
+                <h2></h2><br>
+                <p></p>
+                <a id="backLink" href="#">Back to List</a>
+            </div>
+        </div>
+    </template>
+
 
     <script>
         //Template 1
         function createTemplate1(post) {
-            const template = document.createElement('div');
-            template.classList.add('template1');
-            const img =document.createElement('img')
-            img.src = post.image
-            const content = document.createElement('div')
-            content.classList.add('content')
-            content.innerHTML = `
-                    <h2>${post.title}</h2><br>
-                    ${post.text}
-            `;
-            template.appendChild(img);
-            template.appendChild(content);
-            return template;
+            const template = document.querySelector('#template');
+            const templateClone = template.content.cloneNode(true);
+            const img = templateClone.querySelector('img');
+            img.src = post.image;
+            const h2 = templateClone.querySelector('h2');
+            h2.textContent = post.title;
+            const p = templateClone.querySelector('p');
+            p.innerHTML = post.text;
+            templateClone.querySelector('.template1').setAttribute('id', post.id);
+            const backLink = templateClone.querySelector('#backLink');
+            backLink.classList.add('hide');
+
+            return templateClone;
         }
 
-        //Template 2
-        function createTemplate2(post) {
-            const template = document.createElement('div');
-                template.classList.add('template2');
-            const img =document.createElement('img')
-                img.src = post.image
-            const content = document.createElement('div')
-                content.classList.add('content')
-                content.innerHTML = `                
-                    <h2>${post.title}</h2>
-                    ${post.text}`;
-            const backLink=document.createElement('a');
-                backLink.setAttribute("id","backLink");
-                backLink.setAttribute("href","#");
-                backLink.innerHTML= `Back to List`;
-            content.appendChild(backLink);
-            template.appendChild(img);
-            template.appendChild(content);
-            return template;
-        }
-
-        //Navigation
-        function navigateToTemplate2(post) {
-            const postContainer = document.getElementById('postContainer');
-            postContainer.innerHTML = '';
-            const template2 = createTemplate2(post);
-            postContainer.appendChild(template2);
-            const backLink = document.getElementById('backLink');
-            backLink.addEventListener('click', function (event) {
-                event.preventDefault();
+        function switchToTemplate2(postId) {
+            const templateDiv = document.getElementById(postId);
+            const backLink = templateDiv.querySelector('#backLink');
+            backLink.classList.remove('hide');
+            backLink.addEventListener('click', event => {
                 loadPosts();
-                history.pushState(null, null, window.location.pathname);
+            })
+            templateDiv.classList.remove('template1');
+            templateDiv.classList.add('template2');
 
-            });
+            window.location.hash = 'template2=' + postId;
         }
-
-        //Template 1 click
-        function template1Click(post) {
-            return function () {
-                navigateToTemplate2(post);
-                history.pushState({ template: 'template2', post }, null, '?template=template2');
-                localStorage.setItem('selectedPost', JSON.stringify(post));
-            }
-        }
-
+        
         //JSON Load information
+        let posts = {};
         function loadPosts() {
             fetch('post.json')
                 .then(response => response.json())
-                .then(posts => {
+                .then(data => {
+                    posts = data;
                     const postContainer = document.getElementById('postContainer');
                     postContainer.innerHTML = '';
+                    const fragment = document.createDocumentFragment();
                     for (const key in posts) {
                         if (posts.hasOwnProperty(key)) {
                             const post = posts[key];
                             const template1 = createTemplate1(post);
-                            template1.addEventListener('click', template1Click(post));
-                            postContainer.appendChild(template1);
+                            fragment.appendChild(template1);
                         }
                     }
+                    postContainer.appendChild(fragment);
+
+
+                })
+                .then(() => {
+                    postContainer.addEventListener('click', event => {
+                        const clickedElement = event.target;
+                        const post = clickedElement.closest('.template1');
+                        if (post) {
+                            loadOnePost(post.id);
+                        }
+                    });
                 })
                 .catch(error => console.log(error));
         }
 
+        function loadOnePost(postId) {
+            fetch('post.json')
+                .then(response => response.json())
+                .then(data => {
+                    const postContainer = document.getElementById('postContainer');
+                    postContainer.innerHTML = '';
+                    const fragment = document.createDocumentFragment();
+                    if (data.hasOwnProperty(postId)) {
+                        const post = data[postId];
+                        const template1 = createTemplate1(post);
+                        fragment.appendChild(template1);
+                    }
+
+                    postContainer.appendChild(fragment);
+
+
+                }).then(() => switchToTemplate2(postId)).catch(error => console.log(error));
+        }
+
+
         //Initialize App
         function initializeApp() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const template = urlParams.get('template');
-            if (template === 'template2') {
-                const post = JSON.parse(localStorage.getItem('selectedPost'));
-                navigateToTemplate2(post);
+            const fragment = window.location.hash.substring(1);
+            if (fragment.startsWith('template2=')) {
+                const postId = fragment.substring(10);
+                loadOnePost(postId);
             } else {
                 loadPosts();
             }
-            window.addEventListener('popstate', function (event) {
-                if (event.state && event.state.template === 'template2') {
-                    const post = event.state.post;
-                    navigateToTemplate2(post);
+            window.addEventListener('hashchange', () => {
+                const newFragment = window.location.hash.substring(1);
+                if (newFragment.startsWith('template2=')) {
+                    const newPostId = newFragment.substring(10);
+                    loadOnePost(newPostId);
                 } else {
                     loadPosts();
                 }
             });
+
+
         }
+
+
+
+
 
         initializeApp();
     </script>
