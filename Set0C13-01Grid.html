@@ -26,13 +26,14 @@
 
   <script>
     const gridContainer = document.getElementById('gridContainer');
-
+    const fragment = document.createDocumentFragment();
     for (let i = 1; i <= 25; i++) {
       const gridItem = document.createElement('div');
       gridItem.classList.add('grid-item');
       gridItem.textContent = i;
-      gridContainer.appendChild(gridItem);
+      fragment.appendChild(gridItem);
     }
+    gridContainer.appendChild(fragment);
 
     gridContainer.addEventListener('click', function (event) {
       if (event.target.classList.contains('grid-item')) {
