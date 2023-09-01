@@ -1,26 +1,31 @@
 {
     "1": {
+        "id":1,
         "image": "image1.jpg",
         "title": "Welcome",
         "text": "<p>Welcome, dear traveler, to the realm of poetic wonder. Behold the realm where imagination takes flight, where the visionary artistry of William Blake dances upon the canvas of words. In this mystical realm, where heaven and earth intertwine, we invite you to wander amidst the tapestry of dreams and mysteries.</p><p>Within these verses, you shall encounter a symphony of vibrant imagery and profound symbolism. Like a poet-prophet, Blake unveils the hidden truths that lie beneath the surface of reality. His words, like brushes on a divine palette, paint a world where innocence and experience, darkness and light, collide and intertwine. Prepare to be transported to a realm where angels and demons converse, where nature speaks in whispers, and where the human soul journeys through realms both earthly and ethereal.</p>"
     },
     "2": {
+        "id":2,
         "image": "image3.png",
         "title": "Schwarzschild",
         "text": "<p>In the dazzling stellar landscape of theoretical physics, a gem of knowledge hides under the name of the Schwarzschild metric. In the realms of the cosmos, where invisible forces govern the celestial ballet, this metric unravels the secrets of a gravitational enigma with captivating elegance.</p>"
     },
     "3":{
+        "id":3,
         "image": "image2.jpg",
         "title": "Again",
         "text": "More an more text"
     },
     "4":{
+        "id":4,
         "image": "image4.jpeg",
         "title": "Again and again",
         "text":"<p>O, behold the wondrous equation of Schwarzschild! A jewel in the crown of Einstein's grand theory, it doth reveal the secrets of space and time. As the bard of physics, let us delve into its intricate verse and unravel its cosmic mysteries.</p><p>In the realm of gravitation, where massive bodies hold sway, the equation doth describe the curvature of space-time. Like a tapestry woven by celestial hands, it paints a picture of the cosmos. With each passing moment, the fabric of space bends and warps, revealing the dance of mass and energy.</p><p>Let us ponder upon the metric of Schwarzschild, a tapestry of words that sings of gravitation's might. It doth present a stage where time doth slow, and the very fabric of reality is stretched and contorted. Forsooth, the closer one ventures to the massive object, the deeper the well of gravity, wherein time doth slow its eternal march.</p><p>Picture, if thou wilt, a star, a black hole, or an object of great mass. The metric reveals the radius beyond which naught can escape its gravitational grip. This event horizon, a boundary invisible yet all-consuming, hides the secrets of the abyss. No light nor information shall return from its grasp, forever lost to the void.</p><p>Thus, let us revel in the wonders of Schwarzschild's equation, for it unveils the cosmic ballet where gravity reigns supreme. With each passing age, it continues to inspire and ignite the minds of scholars and poets alike. In this grand cosmic theater, let us play our part and seek the truths that lie within its enigmatic verse.</p>"
     },
     
     "5":{
+        "id":5,
         "image": "image5.jpeg",
         "title": "Again and again and again",
         "text": "<p>Once upon a time in a quaint town named Geometria, there lived a brilliant mathematician named Dr. Woronowicz.He was known far and wide for his groundbreaking work in noncommutative geometry. Unlike traditional geometry, where the order of operations doesn't matter, Dr. Woronowicz's research focused on spaces where the order of operations could drastically change the outcome.Once upon a time in a quaint town named Geometria, there lived a brilliant mathematician named Dr. Woronowicz. He was known far and wide for his groundbreaking work in noncommutative geometry. Unlike traditional geometry, where the order of operations doesn't matter, Dr. Woronowicz's research focused on spaces where the order of operations could drastically change the outcome. Once upon a time in a quaint town named Geometria, there lived a brilliant mathematician named Dr. Woronowicz. He was known far and wide for his groundbreaking work in noncommutative geometry. Unlike traditional geometry, where the order of operations doesn't matter, Dr. Woronowicz's research focused on spaces where the order of operations could drastically change the outcome.</p>"
