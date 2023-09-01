@@ -62,7 +62,6 @@ const usToIs = function (month, day, year) {
     } else if (!yearRegex.test(year)) {
         throw new Error("This is not a valid year");
     }
-    console.log('here')
     throw new Error("This is not a valid date");
 }
 // Example:
