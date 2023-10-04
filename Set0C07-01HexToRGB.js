@@ -1,10 +1,10 @@
 const hexToRGB = function (hexExpression) {
-    const regex = /#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
+    const regex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
 
     if (regex.test(hexExpression)) {
         const match = regex.exec(hexExpression);
         let pairs = []
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
             let rgb = parseInt(match[i + 1], 16);
             pairs.push(rgb)
         }
@@ -19,3 +19,4 @@ console.log(hexToRGB('#3020,g'));//Uncaught Error Error: This is not a valid exp
 console.log(hexToRGB('#302fg'));//Uncaught Error Error: This is not a valid expression
 console.log(hexToRGB('#3020ff1'));//Uncaught Error Error: This is not a valid expression
 console.log(hexToRGB('#3020ffxy'));//Uncaught Error Error: This is not a valid expression
+console.log(hexToRGB('XY#3020ff'));//Uncaught Error Error: This is not a valid expression
